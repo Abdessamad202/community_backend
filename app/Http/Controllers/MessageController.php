@@ -44,7 +44,7 @@ class MessageController extends Controller
         ]);
         $message->sender()->associate($sender);
         $message->save();
-        dump($message);
+        // dump($message);
         broadcast(new MessageSent($message))->toOthers();
 
         return response()->json([
@@ -59,7 +59,13 @@ class MessageController extends Controller
         broadcast(new TypingEvent($request->conversationId, Auth::id()))->toOthers();
         return response()->json(['status' => 'typing broadcasted']);
     }
-
+    public function readMessages(Conversation  $conversation)
+    {
+        $conversation->readed();
+        return response()->json([
+            'status' => 'success',
+        ]);
+    }
 
     /**
      * Update an existing message.

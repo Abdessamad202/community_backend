@@ -12,8 +12,7 @@ return new class extends Migration {
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('last_message_at')->nullable()->after('user_id_2');
-            $table->timestamps();
+            $table->timestamp('last_message_at')->nullable();
             // Ensure each conversation is unique between two users
         });
     }

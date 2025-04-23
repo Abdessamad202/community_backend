@@ -21,7 +21,8 @@ class ConversationController extends Controller
          */
         $user = Auth::user(); // Get authenticated user
         // Retrieve all conversations where the user is part of (either user_id_1 or user_id_2)
-        $conversations = $user->conversations()->with(['participant.profile', 'messages'])->latest("last_message_at")->paginate(10); // Paginate the results
+        $conversations = $user->conversations()->with(['participant.profile', 'messages'])->withCount('unreaded')->latest("last_message_at")->paginate(10); // Paginate the results
+        // $conversations->
         return  response()->json([
             'conversations' => $conversations->items(),
             'nextPage' => $conversations->hasMorePages() ? $conversations->currentPage() + 1 : null,
@@ -78,4 +79,5 @@ class ConversationController extends Controller
         //
 
     }
+    
 }

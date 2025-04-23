@@ -45,6 +45,15 @@ class Conversation extends Model
     {
         return $this->hasMany(Message::class)->oldest('created_at');
     }
+    public function unreaded()
+    {
+        return $this->messages()
+            ->where('sender_id','!=', Auth::id())
+            ->whereNull('read_at');
+    }
+    public function readed(){
+        return $this->unreaded()->update(['read_at' => now()]);
+    }
     /**
      * Check if a given user is a participant in this conversation.
      *

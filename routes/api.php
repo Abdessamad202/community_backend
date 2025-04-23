@@ -128,7 +128,7 @@ Route::get('/profiles/{user}', [UserController::class, 'profile'])->middleware('
 Route::patch('/change-password', [UserController::class, 'changePassword'])->middleware('auth:sanctum');
 Route::post('/messages/{conversation}',[MessageController::class, 'send'])->middleware('auth:sanctum');
 Route::post('/typing', [MessageController::class, 'typing'])->middleware('auth:sanctum');
-
+Route::post('/read-messages/{conversation}', [MessageController::class,'readMessages'])->middleware('auth:sanctum');
 // Route::post('/broadcasting/auth', [CustomBroadcastAuthController::class, 'authenticate'])
 //      ->middleware('auth:sanctum');
 // Broadcast::routes(['middleware' => ['auth:sanctum']]);
