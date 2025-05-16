@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('date_of_birth');
             $table->enum('gender', ['M', 'F']);
-            $table->string('picture')->default('http://backend_comunity_app.test/imgs/profiles/user.jpg');
+            $table->string('picture')->default('http://community_backend.test/imgs/profiles/user.jpg');
             $table->text('description')->nullable();
             $table->timestamps();
         });
